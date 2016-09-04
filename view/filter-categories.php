@@ -34,14 +34,14 @@ $rootCategory = ! empty( $rootCategory ) ? $rootCategory : 0;
 		}
 
 		?>
-		<li class="filter-category-div-wrapper" id="<?php echo esc_attr($fullNameWithoutRoot) ?>" style="margin-left: <?php echo esc_attr($widthStyle) ?>px">
+		<li class="filter-category-div-wrapper <?php if($depth) { echo 'hidden'; } ?>" id="<?php echo esc_attr($fullNameWithoutRoot) ?>" style="margin-left: <?php echo esc_attr($widthStyle) ?>px">
 			<?php if ( $hasChildren ) {
-				echo '<span class="kaltura-caret kaltura-caret-down">&#9660</span>';
+				echo '<span class="kaltura-caret kaltura-caret-right">&#9658</span>';
 			} ?>
 			<label class="filter-category-label">
 				<?php $checked = is_array($this->selectedCategories) && in_array($category->id, $this->selectedCategories); ?>
-				<input id="<?php echo esc_attr($category->fullIds); ?>" class="filter-category-input" type='checkbox' name='categoryvar[]' value="<?php echo esc_attr($category->id) ?>" <?php echo checked($checked) ?>/>
-				<?php echo esc_html($category->name) ?>
+				<input id="<?php echo esc_attr($category->fullIds); ?>" class="filter-category-input checkbox" type='checkbox' name='categoryvar[]' value="<?php echo esc_attr($category->id) ?>" <?php echo checked($checked) ?>/>
+				<small><?php echo esc_html($category->name) ?></small>
 			</label>
 			<br>
 		</li>

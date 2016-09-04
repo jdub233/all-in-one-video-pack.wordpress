@@ -12,6 +12,7 @@ class Kaltura_LibraryController extends Kaltura_BaseController {
 			'browse',
 			'getplayers',
 			'saveentryname',
+			'getentrystatus'
 		);
 	}
 
@@ -100,6 +101,9 @@ class Kaltura_LibraryController extends Kaltura_BaseController {
 
 	public function sendtoeditorAction() {
 		wp_enqueue_script( 'kaltura-player-selector' );
+		wp_enqueue_script( 'kaltura-bootstrap' );
+		wp_enqueue_style( 'kaltura-bootstrap' );
+
 
 		$entryIds = KalturaHelpers::getRequestParam( 'entryIds', array() );
 		$entryId  = null;
@@ -130,6 +134,9 @@ class Kaltura_LibraryController extends Kaltura_BaseController {
 			$params['flashVars']               = $flashVars;
 			$params['flashVars']['autoPlay']   = 'true';
 			$params['thumbnailPlaceHolderUrl'] = $thumbnail;
+			$params['entryReady'] = $entry->status === Kaltura_Client_Enum_EntryStatus::READY;
+			$params['entryError'] = $entry->status === Kaltura_Client_Enum_EntryStatus::ERROR_CONVERTING || $entry->status === Kaltura_Client_Enum_EntryStatus::ERROR_IMPORTING;
+			$params['entryConverting'] = !$params['entryReady'] && !$params['entryError'];
 		} else {
 			$kmodel = KalturaModel::getInstance();
 
@@ -162,6 +169,8 @@ class Kaltura_LibraryController extends Kaltura_BaseController {
 	}
 
 	public function browseAction() {
+		wp_enqueue_script( 'kaltura-bootstrap' );
+		wp_enqueue_style( 'kaltura-bootstrap' );
 		wp_enqueue_script( 'kaltura-editable-name' );
 		$page         = absint( KalturaHelpers::getRequestParam( 'paged', 1 ) );
 		$isLibrary    = (bool) KalturaHelpers::getRequestParam( 'isLibrary', false );
