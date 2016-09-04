@@ -1,0 +1,573 @@
+@color_1: #006699;
+@color_2: #6699CC;
+@color_3: #333;
+@color_4: #31302E;
+@color_5: #004265;
+@color_6: #000;
+@color_7: #CC0000;
+
+/* general for tabs */
+/* update thumbnail page */
+/* edit & send tabs */
+/* cms login box */
+/* entries page */
+/* registration page */
+/* settings info page */
+/*--------------------------------
+	Contribution Wizard Modal Window
+---------------------------------*/
+/*--------------------------------
+	Sidebar Widget
+---------------------------------*/
+/** CSS for iframe when uploading media to post. */
+
+body {
+
+  &#media-upload {
+    background-color: inherit;
+  }
+
+  .wait {
+    cursor: wait !important;
+    * {
+      cursor: wait !important;
+    }
+  }
+}
+
+.kaltura-loader {
+  display: none;
+  width: 16px;
+  height: 16px;
+  background-image: url(../images/small_loader.gif);
+}
+form.kaltura-form {
+  height: 100%;
+  margin: 0;
+}
+.thumbnail {
+  img {
+    width: 160px;
+    height: 84.38px !important;
+
+    &.default-thumbnail {
+      width: 160px;
+      height: 84.38px;
+      background: url(../images/default-thumbnail.jpg) center;
+    }
+  }
+}
+
+.media-gallery-holder {
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+
+.kaltura-edit-entry-form {
+  padding: 0 16px;
+  #entry-title {
+    max-width: 400px;
+  }
+  #entry-description {
+    max-width: 400px;
+  }
+}
+.media_page_interactive_video_library {
+  .column-posts {
+    width: 5em;
+  }
+}
+.kaltura-pager {
+  text-align: center;
+  float: right;
+  margin-right: 6%;
+}
+.kaltura-tab {
+  margin: 15px;
+  #filter-categories {
+    height: 240px;
+    width: 36%;
+  }
+  .filter-category-input {
+    width: 16px;
+    height: 16px;
+    &:checked {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  #filter-categories-header {
+    width: 45%;
+  }
+  #filter-categories-button {
+    right: 9%;
+  }
+  .entry-search-filter {
+    width: 34%;
+    >input[name="search"] {
+      width: 130px;
+    }
+  }
+  input {
+    font-size: 12px;
+  }
+  .filter-category-div-wrapper {
+    margin-bottom: 4px;
+  }
+}
+.kaltura-updated {
+  padding: 0.6em 1.6em;
+  font-weight: bold;
+}
+a.kalturaLink {
+  color: @color_1;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: underline;
+  &:hover {
+    color: @color_2;
+  }
+}
+
+.entryTitle {
+  word-break: break-all;
+  overflow: hidden;
+  height: 40px;
+}
+
+ul#kaltura-browse {
+  li {
+    position: relative;
+    text-align: center;
+    .thumb {
+      height: 100px;
+      border: none;
+      .overlay {
+        display: none;
+        position: absolute;
+        top: 40px;
+        left: 0;
+        width: 120px;
+        height: 90px;
+        margin: 0 30px;
+        background-image: url(../images/status_bg.png);
+        z-index: 2;
+      }
+    }
+    .entryTitle.showName {
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .entryTitle {
+      color: @color_4;
+      line-height: 15px;
+      height: 30px;
+      font-size: 11px;
+      overflow: hidden;
+      margin: 0 5px 0 5px;
+      word-break: break-all;
+    }
+    .submit {
+      text-align: center;
+      padding: 5px 10px 0;
+      border: none;
+      input {
+        width: 23px;
+        height: 22px;
+        margin: 0 5px;
+        border: none;
+        padding: 0;
+      }
+      input.checkbox {
+        width: 10px;
+        height: 10px;
+      }
+      input.delete {
+        background: url("../images/delete_icon.gif") 0 0 no-repeat;
+        cursor: pointer;
+      }
+      input.add {
+        background: url("../images/add_icon.gif") 0 0 no-repeat;
+        cursor: pointer;
+      }
+      input.thumb {
+        background: url("../images/capture_icon.gif") 0 0 no-repeat;
+        cursor: pointer;
+      }
+      a {
+        color: @color_5;
+      }
+    }
+    input.sendButton {
+      width: 9em;
+    }
+  }
+  li.statusConverting {
+    .overlay {
+      display: block;
+    }
+    div.convertingMsg {
+      display: block;
+    }
+  }
+  li.statusError {
+    .overlay {
+      display: block;
+    }
+    div.errorMsg {
+      display: block;
+    }
+  }
+}
+#update-thumbnail-page {
+  overflow: hidden;
+  height: 100%;
+  .page-wrapper {
+    background-color: #EAF3FA;
+    border: solid 1px #B0D1E0;
+    margin: 10px;
+  }
+  .player-wrapper {
+    min-height: 330px;
+    margin-top: 20px;
+    #kplayer {
+      width: 400px;
+      height: 330px;
+      margin: 0 auto;
+    }
+  }
+  p {
+    text-align: center;
+    padding: 0 30px;
+  }
+}
+#send-to-editor {
+  .videoTitle {
+    padding-left: 30px;
+  }
+  .form-table {
+    width: 100%;
+    height: 100%;
+    td {
+      border: 0;
+      table {
+        width: 100%;
+      }
+    }
+    .options-td {
+      padding-left: 30px;
+      width: 50%;
+      vertical-align: top;
+    }
+  }
+  border: solid 1px #AED3E3;
+  .kaltura-loader {
+    margin: 50px auto;
+  }
+  .playerName {
+    position: absolute;
+    margin: 5px 0 0 5px;
+    font-size: 12px;
+    width: 200px;
+    font-weight: normal;
+    color: @color_6;
+    overflow: hidden;
+  }
+  table.options {
+    td {
+      padding: 0;
+    }
+    td.options-aspect-ratio {
+      vertical-align: top;
+      width: 40%;
+      >strong {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+    }
+    td.options-size {
+      >strong {
+        display: inline-block;
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .backDiv {
+    text-align: right;
+    padding: 5px;
+  }
+  td.kaltura-preview-player-wrapper {
+    width: 50%;
+    float: left;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  .player-selector-tr {
+    div.selectBox {
+      padding-bottom: 15px;
+      #uiConfId {
+        margin-left: 10px;
+        width: 250px;
+        height: 25px;
+      }
+    }
+  }
+  .submit {
+    margin: 0 10px 10px 10px;
+    padding: 0;
+    text-align: right;
+    border: 0;
+  }
+  .player-aspect-ratio {
+    margin-top: 75%;
+  }
+  .kaltura-responsive-player-wrapper {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+  }
+  #divKalturaPlayer {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    height: 100%;
+  }
+  p.note {
+    margin: 5px 0 0 10px;
+    width: 400px;
+    font-size: 10px;
+  }
+  label {
+    font-weight: bold;
+  }
+  fieldset {
+    padding: 5px 5px 10px 5px;
+    legend {
+      padding-bottom: 0px;
+    }
+  }
+  div.selectBox {
+    margin-bottom: 15px;
+  }
+  .playerRatioDiv {
+    margin-bottom: 10px;
+  }
+  div.radioBox {
+    padding: 4px 0 12px 0;
+    .iradio {
+      position: relative;
+      top: 3px;
+    }
+    label {
+      padding-left: 7px;
+    }
+  }
+  div.checkBox {
+    padding: 4px 0 12px 0;
+  }
+  input#playerCustomWidth {
+    height: 25px;
+  }
+  select {
+    width: 130px;
+    height: auto;
+    padding: 0;
+  }
+}
+#kaltura-cms-login {
+  background-color: #E1EAEF;
+  border: solid 1px #B4D5E5;
+  margin: 5px 0 15px 0;
+  .kalturaFirstRow {
+    td {
+      padding-top: 10px;
+    }
+    th {
+      padding-top: 10px;
+    }
+  }
+  th {
+    font-weight: normal;
+    padding-left: 10px;
+  }
+  .kalturaLastRow {
+    td {
+      padding-right: 10px;
+      padding-bottom: 10px;
+    }
+  }
+}
+.kaltura-wrap {
+  #kaltura-cms-login {
+    float: right;
+    margin-right: 6%;
+  }
+}
+.entries {
+  p.info {
+    margin: 0 0 12px;
+    float: left;
+  }
+}
+.settings_page_kaltura_options {
+  .registration {
+    .form-table {
+      th {
+        width: 250px;
+      }
+    }
+    input[type="text"] {
+      width: 300px;
+    }
+    select {
+      width: 300px;
+    }
+    textarea {
+      width: 300px;
+    }
+    .error {
+      border: solid 1px #CC0000;
+      background-color: #FFEBE8;
+    }
+    label.error {
+      border: none;
+    }
+    tr.agree_to_terms {
+      label.error {
+        background: transparent;
+        color: @color_7;
+        display: block;
+      }
+    }
+  }
+  select {
+    width: 420px;
+  }
+  tr.advanced {
+    display: none;
+  }
+  .user_identifier_desc {
+    width: 400px;
+    padding-left: 23px;
+  }
+  tr.user_identifier {
+    label {
+      font-weight: bold;
+    }
+  }
+  .available-players {
+    .players-scroll {
+      max-height: 120px;
+      width: 420px;
+      overflow-y: auto;
+      label {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        display: block;
+      }
+    }
+  }
+}
+
+#all-in-one-video-pack-widget {
+  #kaltura-loader {
+    display: none;
+    width: 35px;
+    height: 35px;
+    padding: 20px 0;
+    margin: auto;
+  }
+  #kaltura-sidebar-menu {
+    width: 100%;
+    margin: 0;
+    padding: 10px 0;
+    text-align: center;
+    a {
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    a.selected {
+      font-weight: bold;
+      &:hover {
+        text-decoration: none;
+        cursor: default;
+      }
+    }
+  }
+  ul#kaltura-items {
+    margin: 0;
+    li {
+      background: none;
+      text-align: center;
+      margin: 0;
+      margin-bottom: 10px;
+      &:before {
+        content: "";
+      }
+      div.thumb {
+        width: 120px;
+        height: 90px;
+        margin: 0 auto;
+        background-color: #000000;
+      }
+    }
+  }
+  ul.kaltura-sidebar-pager {
+    width: 100%;
+    margin: 0 0 30px 0;
+    padding: 0;
+    li {
+      float: left;
+      width: 50%;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background: none;
+      &:before {
+        content: "";
+      }
+    }
+    a {
+      cursor: pointer;
+    }
+  }
+}
+#kaltura-wrap {
+  #root_category {
+    width: 450px;
+  }
+}
+.filter-category-label {
+  top: -6px;
+  position: relative;
+}
+.filter-category-input {
+  &:checked {
+    -webkit-box-shadow: 0 0 12px #CCCC00;
+    -moz-box-shadow: 0 0 12px #CCCC00;
+    box-shadow: 0 0 12px #CCCC00;
+  }
+}
+.kaltura-caret {
+  float: left;
+  position: relative;
+  cursor: pointer;
+  top: -4px;
+  left: -2px;
+  font-size: 10px;
+  margin-right: 3px;
+}
+#filter-media-owner-type-wrap {
+  display: inline-block;
+}
+#filter-categories {
+  padding: 15px;
+  height: 100%;
+  max-height: 500px;
+  overflow: auto;
+  border: 1px solid #d5d2ca;
+}
