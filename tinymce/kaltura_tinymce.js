@@ -16,7 +16,8 @@
 			});
 
 			var onBeforeSetContentDelegate = Kaltura.Delegate.create(this, this._onBeforeSetContent);
-			ed.onBeforeSetContent.add(onBeforeSetContentDelegate);
+			ed.on('BeforeSetContent', onBeforeSetContentDelegate);
+
 
 			var onGetContentDelegate = Kaltura.Delegate.create(this, this._onGetContent);
 			ed.onGetContent.add(onGetContentDelegate);
@@ -56,11 +57,11 @@
 
 		_tagEnd: ['/]', ']'],
 
-		_onBeforeSetContent: function (ed, obj) {
-			if (!obj.content)
+		_onBeforeSetContent: function (ed) {
+			if (!ed.content)
 				return;
 
-			var contentData = obj.content;
+			var contentData = ed.content;
 			var startPos = 0;
 
 			while ((startPos = contentData.indexOf(this._tagStart, startPos)) != -1) {
@@ -145,7 +146,7 @@
 				contentData += contentDataEnd;
 			}
 
-			obj.content = contentData;
+			ed.content = contentData;
 		},
 
 		_onGetContent: function (ed, obj) {

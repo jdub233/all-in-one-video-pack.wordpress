@@ -1,58 +1,65 @@
 <?php KalturaHelpers::protectView( $this ); ?>
 <?php if ( $this->uiConfId ): ?>
 	<script type="text/javascript">
-		var playerWidth = <?php echo wp_json_encode($this->playerWidth); ?>;
-		var playerHeight = <?php echo wp_json_encode($this->playerHeight); ?>;
-		var uiConfId = <?php echo wp_json_encode($this->uiConfId); ?>;
-		var entryId = <?php echo wp_json_encode($this->entryId); ?>;
-		var isResponsive = <?php echo wp_json_encode($this->isResponsive); ?>;
-		var hoveringControls = <?php echo wp_json_encode($this->hoveringControls); ?>;
+		jQuery('document').ready(function(){
+			var playerWidth = <?php echo wp_json_encode($this->playerWidth); ?>;
+			var playerHeight = <?php echo wp_json_encode($this->playerHeight); ?>;
+			var uiConfId = <?php echo wp_json_encode($this->uiConfId); ?>;
+			var entryId = <?php echo wp_json_encode($this->entryId); ?>;
+			var isResponsive = <?php echo wp_json_encode($this->isResponsive); ?>;
+			var hoveringControls = <?php echo wp_json_encode($this->hoveringControls); ?>;
+	
+			var htmlArray = [];
+			htmlArray.push('[');
+			htmlArray.push('kaltura-widget ');
+			htmlArray.push('uiconfid="' + uiConfId + '" ');
+			htmlArray.push('entryid="' + entryId + '" ');
+			htmlArray.push('width="' + playerWidth + '" ');
+			htmlArray.push('height="' + playerHeight + '" ');
+			htmlArray.push('responsive="' + isResponsive + '" ');
+			htmlArray.push('hoveringControls="' + hoveringControls + '" ');
+			htmlArray.push('/]');
+			htmlArray.push('\n');
+	
+	
+			var html = htmlArray.join('');
+	
+			// lets make it safe
+			try {
+				var topWindow = Kaltura.getTopWindow();
+	
+				if (topWindow.tinyMCE && topWindow.tinyMCE.get('content') && !topWindow.tinyMCE.get('content').isHidden()) {
+					var ed = topWindow.tinyMCE.activeEditor;
+					if (topWindow.tinyMCE.isIE && ed.windowManager.insertimagebookmark)
+						ed.selection.moveToBookmark(ed.windowManager.insertimagebookmark);
 
-		var htmlArray = [];
-		htmlArray.push('[');
-		htmlArray.push('kaltura-widget ');
-		htmlArray.push('uiconfid="' + uiConfId + '" ');
-		htmlArray.push('entryid="' + entryId + '" ');
-		htmlArray.push('width="' + playerWidth + '" ');
-		htmlArray.push('height="' + playerHeight + '" ');
-		htmlArray.push('responsive="' + isResponsive + '" ');
-		htmlArray.push('hoveringControls="' + hoveringControls + '" ');
-		htmlArray.push('/]');
-		htmlArray.push('\n');
-
-
-		var html = htmlArray.join('');
-
-		// lets make it safe
-		try {
-			var topWindow = Kaltura.getTopWindow();
-
-			if (topWindow.tinyMCE && topWindow.tinyMCE.get('content') && !topWindow.tinyMCE.get('content').isHidden()) {
-				var ed = topWindow.tinyMCE.activeEditor;
-				if (topWindow.tinyMCE.isIE && ed.windowManager.insertimagebookmark)
-					ed.selection.moveToBookmark(ed.windowManager.insertimagebookmark);
-
-				topWindow.tinyMCE.execCommand('mceInsertRawHTML', false, html);
-			}
-			else {
-				if (topWindow.edInsertContent) {
-					topWindow.edInsertContent(topWindow.document.getElementById('content'), html);
+					ed.insertContent(html);
 				}
 				else {
-					var content = topWindow.jQuery('#content');
-					content.val(content.val() + html);
+					if (topWindow.edInsertContent) {
+						topWindow.edInsertContent(topWindow.document.getElementById('content'), html);
+					}
+					else {
+						var content = topWindow.jQuery('#content');
+						content.val(content.val() + html);
+					}
 				}
+	
+				<?php if (count($this->nextEntryIds) > 0): ?>
+				window.location.href = <?php echo wp_json_encode( esc_js( KalturaHelpers::generateTabUrl(array('tab' => 'kaltura_upload', 'kaction' => 'sendtoeditor', 'firstedit' => 'true', 'entryIds' => $this->nextEntryIds) ) ) ); ?>;
+				<?php else: ?>
+				setTimeout(topWindow.tb_remove(), 0);
+				<?php endif; ?>
+			}
+			catch (e) {
+				var displayEditTable = true;
 			}
 
-			<?php if (count($this->nextEntryIds) > 0): ?>
-			window.location.href = <?php echo wp_json_encode( esc_js( KalturaHelpers::generateTabUrl(array('tab' => 'kaltura_upload', 'kaction' => 'sendtoeditor', 'firstedit' => 'true', 'entryIds' => $this->nextEntryIds) ) ) ); ?>;
-			<?php else: ?>
-			setTimeout('topWindow.tb_remove()', 0);
-			<?php endif; ?>
-		}
-		catch (e) {
-			var displayEditTable = true;
-		}
+			if (displayEditTable) {
+				jQuery("table").show();
+				jQuery("#txtCode").val(html);
+			}
+		});
 	</script>
 	<div id="send-to-editor" class="kaltura-tab">
 		<form method="post" class="kaltura-form">
@@ -73,12 +80,6 @@
 			</table>
 		</form>
 	</div>
-	<script>
-		if (displayEditTable) {
-			jQuery("table").show();
-			jQuery("#txtCode").val(html);
-		}
-	</script>
 <?php else: ?>
 	<?php
 	$flashVarsStr = KalturaHelpers::flashVarsToString( $this->flashVars );
